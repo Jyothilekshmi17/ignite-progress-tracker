@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-xl font-semibold mb-4">Confirm Delete</h2>
+<p class="mb-4">Are you sure you want to delete "{{ object }}" ? This action cannot be undone.</p>
+<form method="post">{% csrf_token %}
+  <button class="px-3 py-2 bg-rose-500 text-white rounded">Delete</button>
+  <a href="javascript:history.back()" class="px-3 py-2 border rounded">Cancel</a>
+</form>
+{% endblock %}

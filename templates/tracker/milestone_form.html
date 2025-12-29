@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load form_tags %}
+{% block content %}
+<div class="max-w-3xl">
+  <h2 class="text-xl font-semibold mb-4">{% if form.instance.pk %}Edit Milestone{% else %}New Milestone{% endif %}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="mb-3">
+      {{ form.title.label_tag }}<br>
+      {{ form.title|add_class:"w-full px-3 py-2 border rounded" }}
+    </div>
+    <div class="mb-3">
+      {{ form.badge_url.label_tag }}<br>
+      {{ form.badge_url|add_class:"w-full px-3 py-2 border rounded" }}
+    </div>
+    <div class="mb-3">
+      {{ form.date.label_tag }}<br>
+      {{ form.date|add_class:"w-full px-3 py-2 border rounded" }}
+    </div>
+    <div class="mb-3">
+      {{ form.description.label_tag }}<br>
+      {{ form.description|add_class:"w-full px-3 py-2 border rounded" }}
+    </div>
+    <div class="flex gap-2">
+      <button class="px-3 py-2 bg-sky-300 text-white rounded">Save</button>
+      <a href="{% url 'tracker:milestones_list' %}" class="px-3 py-2 border rounded">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

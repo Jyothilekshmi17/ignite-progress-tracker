@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load form_tags %}
+{% block content %}
+<div class="max-w-md mx-auto">
+  <h2 class="text-xl font-semibold mb-4">Register</h2>
+  <form method="post">{% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="mb-3">
+      {{ form.username.label_tag }}<br>
+      {{ form.username|add_class:"w-full px-3 py-2 border rounded" }}
+    </div>
+    <div class="mb-3">
+      {{ form.email.label_tag }}<br>
+      {{ form.email|add_class:"w-full px-3 py-2 border rounded" }}
+    </div>
+    <div class="mb-3">
+      {{ form.password1.label_tag }}<br>
+      {{ form.password1|add_class:"w-full px-3 py-2 border rounded" }}
+    </div>
+    <div class="mb-3">
+      {{ form.password2.label_tag }}<br>
+      {{ form.password2|add_class:"w-full px-3 py-2 border rounded" }}
+    </div>
+    <button class="px-3 py-2 bg-sky-300 text-white rounded">Create account</button>
+  </form>
+</div>
+{% endblock %}

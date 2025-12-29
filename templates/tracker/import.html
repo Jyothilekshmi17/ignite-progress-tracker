@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-xl font-semibold mb-4">Import Backup</h2>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+  <input type="file" name="file" accept=".json" class="mb-3" />
+  <div><button class="px-3 py-2 bg-sky-300 text-white rounded">Upload</button></div>
+</form>
+{% endblock %}

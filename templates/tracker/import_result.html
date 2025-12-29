@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-xl font-semibold mb-4">Import Result</h2>
+{% if error %}
+  <div class="p-4 bg-rose-50 text-rose-800 rounded">{{ error }}</div>
+{% else %}
+  <div class="p-4 bg-emerald-50 text-emerald-800 rounded">Import completed successfully.</div>
+{% endif %}
+{% endblock %}

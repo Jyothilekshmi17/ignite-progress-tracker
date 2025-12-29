@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="flex items-center justify-between mb-4">
+  <h2 class="text-xl font-semibold">Milestones</h2>
+  <a href="{% url 'tracker:milestone_create' %}" class="px-3 py-2 bg-sky-300 text-white rounded">New</a>
+</div>
+
+<div class="space-y-3">
+  {% for m in milestones %}
+    <div class="p-4 bg-white dark:bg-slate-800 rounded flex justify-between">
+      <div>
+        <div class="font-medium">{{ m.title }}</div>
+        <div class="text-sm text-slate-500">{{ m.description }}</div>
+      </div>
+      <div class="text-xs text-slate-400">{{ m.date }}</div>
+    </div>
+  {% empty %}
+    <div class="text-slate-500">No milestones yet.</div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="flex items-center justify-between mb-4">
+  <h2 class="text-xl font-semibold">Projects</h2>
+  <div class="flex gap-2">
+    <a href="{% url 'tracker:project_create' %}" class="px-3 py-2 bg-sky-300 text-white rounded">New Project</a>
+  </div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  {% for p in projects %}
+    <div class="p-4 bg-white dark:bg-slate-800 rounded">
+      <div class="flex justify-between">
+        <div>
+          <div class="font-medium">{{ p.title }}</div>
+          <div class="text-sm text-slate-500 mt-1">{{ p.description|truncatechars:120 }}</div>
+          <div class="mt-3">
+            {% for t in p.tech_list %}
+              <span class="text-xs px-2 py-1 bg-slate-100 rounded mr-1">{{ t }}</span>
+            {% endfor %}
+            <div class="mt-2 w-full h-2 bg-slate-200 rounded">
+              <div style="width:{{ p.progress }}%" class="h-full bg-sky-300"></div>
+            </div>
+            <div class="text-xs text-slate-500 mt-1">{{ p.progress }}%</div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <a href="{% url 'tracker:project_edit' p.pk %}" class="text-sm text-sky-500">Edit</a>
+          <form method="post" action="{% url 'tracker:project_delete' p.pk %}">
+            {% csrf_token %}
+            <button class="text-sm text-rose-500">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <div class="text-slate-500">No projects yet.</div>
+  {% endfor %}
+</div>
+{% endblock %}

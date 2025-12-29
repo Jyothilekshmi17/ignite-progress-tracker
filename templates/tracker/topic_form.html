@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load form_tags %}
+{% block content %}
+<div class="max-w-3xl">
+  <h2 class="text-xl font-semibold mb-4">{% if form.instance.pk %}Edit Topic{% else %}New Topic{% endif %}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="mb-3">
+      {{ form.name.label_tag }}<br>
+      {{ form.name|add_class:"w-full px-3 py-2 border rounded" }}
+    </div>
+    <div class="mb-3">
+      {{ form.status.label_tag }}<br>
+      {{ form.status|add_class:"w-full px-3 py-2 border rounded" }}
+    </div>
+    <div class="mb-3">
+      {{ form.summary.label_tag }}<br>
+      {{ form.summary|add_class:"w-full px-3 py-2 border rounded" }}
+    </div>
+    <div class="mb-3">
+      {{ form.difficulty.label_tag }}<br>
+      {{ form.difficulty|add_class:"w-24 px-3 py-2 border rounded" }}
+    </div>
+    <div class="mb-3">
+      {{ form.resources.label_tag }}<br>
+      {{ form.resources|add_class:"w-full px-3 py-2 border rounded" }}
+    </div>
+    <div class="flex gap-2">
+      <button class="px-3 py-2 bg-sky-300 text-white rounded">Save</button>
+      <a href="{% url 'tracker:topics_list' %}" class="px-3 py-2 border rounded">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
